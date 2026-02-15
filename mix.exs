@@ -1,9 +1,9 @@
-defmodule AdventOfCode.MixProject do
+defmodule ElixirLeetcode.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :advent_of_code,
+      app: :elixir_leetcode,
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
@@ -14,15 +14,12 @@ defmodule AdventOfCode.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :inets, :public_key, :ssl]
+      extra_applications: [:logger]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [
-      {:benchee, "~> 1.0"},
-      {:ssl_verify_fun, "~> 1.1.7", manager: :rebar3, override: true}
-    ]
+    []
   end
 end

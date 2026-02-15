@@ -1,127 +1,124 @@
-# Advent of Code Elixir Starter
+# LeetCode Training in Elixir
 
-A batteries included starter pack for participating in [Advent of Code](https://www.adventofcode.com) using Elixir!
+Daily LeetCode problem solving practice using Elixir.
+
+## Structure
+
+```
+lib/
+  elixir_leetcode/          # LeetCode problems
+    two_sum.ex
+    valid_parentheses.ex
+    merge_two_sorted_lists.ex
+    ...
+  other_problems/           # Other coding challenges
+    list_sum.ex
+    password_validator.ex
+    ...
+
+test/
+  elixir_leetcode/          # LeetCode tests
+    two_sum_test.exs
+    ...
+  other_problems/           # Other tests
+    list_sum_test.exs
+    ...
+```
 
 ## Usage
 
-There are 25 modules, 25 tests, and 50 mix tasks.
+### Writing a Solution
 
-1. Fill in the tests with the example solutions.
-1. Write your implementation.
-1. Fill in the final problem inputs into the mix task and run `mix d01.p1`!
-    - Benchmark your solution by passing the `-b` flag, `mix d01.p1 -b`
+Each problem is a module under `ElixirLeetcode`:
 
 ```elixir
-defmodule AdventOfCode.Day01 do
-  def part1(args) do
-  end
-
-  def part2(args) do
-  end
-end
-```
-
-```elixir
-defmodule AdventOfCode.Day01Test do
-  use ExUnit.Case
-
-  import AdventOfCode.Day01
-
-  @tag :skip # Make sure to remove to run your test.
-  test "part1" do
-    input = nil
-    result = part1(input)
-
-    assert result
-  end
-
-  @tag :skip # Make sure to remove to run your test.
-  test "part2" do
-    input = nil
-    result = part2(input)
-
-    assert result
+defmodule ElixirLeetcode.TwoSum do
+  @doc """
+  Given an array of integers `nums` and an integer `target`, return the indices
+  of the two numbers such that they add up to `target`.
+  """
+  def two_sum(nums, target) do
+    # Your solution here
   end
 end
 ```
 
+### Writing Tests
+
+Each test file corresponds to a problem:
+
 ```elixir
-defmodule Mix.Tasks.D01.P1 do
-  use Mix.Task
+defmodule ElixirLeetcode.TwoSumTest do
+  use ExUnit.Case, async: true
+  import ElixirLeetcode.TwoSum
 
-  import AdventOfCode.Day01
+  test "basic case" do
+    assert two_sum([2, 7, 11, 15], 9) == [0, 1]
+  end
 
-  @shortdoc "Day 01 Part 1"
-  def run(args) do
-    input = AdventOfCode.Input.get!(1, 2020)
-
-    if Enum.member?(args, "-b"),
-      do: Benchee.run(%{part_1: fn -> input |> part1() end}),
-      else:
-        input
-        |> part1()
-        |> IO.inspect(label: "Part 1 Results")
+  test "same number used twice" do
+    assert two_sum([3, 3], 6) == [0, 1]
   end
 end
 ```
 
-### Optional Automatic Input Retriever
+### Running Tests
 
-This starter comes with a module that will automatically get your inputs so you
-don't have to mess with copy/pasting. Don't worry, it automatically caches your
-inputs to your machine so you don't have to worry about slamming the Advent of
-Code server. You will need to configure it with your cookie and make sure to
-enable it. You can do this by creating a `config/secrets.exs` file containing
-the following:
+```bash
+# Run all tests
+mix test
 
-```elixir
-import Config
+# Run tests for a specific problem
+mix test test/elixir_leetcode/two_sum_test.exs
 
-config :advent_of_code, AdventOfCode.Input,
-  allow_network?: true,
-  session_cookie: "..." # yours will be longer
+# Run tests in watch mode (if you have mix_test_watch installed)
+mix test.watch
 ```
 
-After which, you can retrieve your inputs using the module:
+### Running the Formatter
 
-```elixir
-day = 1
-year = 2020
-AdventOfCode.Input.get!(day, year)
-# or just have it auto-detect the current year
-AdventOfCode.Input.get!(7)
-# and if your input somehow gets mangled and you need a fresh one:
-AdventOfCode.Input.delete!(7, 2019)
-# and the next time you `get!` it will download a fresh one -- use this sparingly!
+```bash
+mix format
 ```
 
 ## Installation
 
 ```bash
-# clone
-$ git clone git@github.com:mhanberg/advent-of-code-elixir-starter.git advent-of-code
-$ cd advent-of-code
+# Clone the repository
+git clone <your-repo-url>
+cd elixir_leetcode
 
-# Reinitialize your git repo
-$ rm -rf .git && rm -rf .github
-$ git init
+# Install dependencies
+mix deps.get
+
+# Run tests
+mix test
 ```
-### Get started coding with zero configuration
 
-#### Using Visual Studio Code
+## Development Setup
+
+### Using Visual Studio Code
 
 1. [Install Docker Desktop](https://www.docker.com/products/docker-desktop)
 1. Open project directory in VS Code
 1. Press F1, and select `Remote-Containers: Reopen in Container...`
-1. Wait a few minutes as it pulls image down and builds Dev Conatiner Docker image (this should only need to happen once unless you modify the Dockerfile)
-    1. You can see progress of the build by clicking `Starting Dev Container (show log): Building image` that appears in bottom right corner
-    1. During the build process it will also automatically run `mix deps.get`
-1. Once complete VS Code will connect your running Dev Container and will feel like your doing local development
-1. If you would like to use a specific version of Elixir change the `VARIANT` version in `.devcontainer/devcontainer.json`
-1. If you would like more information about VS Code Dev Containers check out the [dev container documentation](https://code.visualstudio.com/docs/remote/create-dev-container/?WT.mc_id=AZ-MVP-5003399)
+1. Wait as it builds the Dev Container Docker image
+1. Once complete, VS Code will connect to your running Dev Container
+1. To use a specific version of Elixir, change the `VARIANT` in `.devcontainer/devcontainer.json`
 
-#### Compatible with Github Codespaces
-1. If you dont have Github Codespaces beta access, sign up for the beta https://github.com/features/codespaces/signup
-1. On GitHub, navigate to the main page of the repository.
-1. Under the repository name, use the  Code drop-down menu, and select Open with Codespaces.
-1. If you already have a codespace for the branch, click  New codespace.
+### Using GitHub Codespaces
+
+1. On GitHub, navigate to the repository
+1. Click the Code dropdown menu, and select "Open with Codespaces"
+1. Click "New codespace" if you don't have one already
+
+## Goals
+
+- Solve one LeetCode problem per day
+- Practice functional programming patterns in Elixir
+- Build test-driven development habits
+- Learn Elixir standard library deeply
+
+## Progress
+
+Track your progress by checking completed problems in `lib/elixir_leetcode/`.
