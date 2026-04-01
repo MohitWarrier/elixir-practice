@@ -22,7 +22,7 @@ defmodule FizzBuzz do
   end
 
   defp classify(n) do
-    Integer.to_string(n)
+    n
   end
 
 end

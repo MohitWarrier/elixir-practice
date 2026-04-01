@@ -1,13 +1,13 @@
 defmodule Caesar do
 
-  def encode(text, shift) do
+  def encrypt(text, shift) do
     text
     |> String.to_charlist()
     |> Enum.map(&shift_char(&1, shift))
     |> List.to_string()
   end
 
-  def decode(text, shift) do
+  def decrypt(text, shift) do
     text
     |> String.to_charlist()
     |> Enum.map(&shift_char(&1, -shift))
