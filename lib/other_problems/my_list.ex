@@ -1,5 +1,4 @@
 defmodule MyList do
-
   def my_length([]) do
     0
   end
@@ -16,7 +15,7 @@ defmodule MyList do
     acc
   end
 
-  defp reverse([head|tail], acc) do
+  defp reverse([head | tail], acc) do
     reverse(tail, [head | acc])
   end
 
@@ -24,11 +23,11 @@ defmodule MyList do
     []
   end
 
-  def my_flatten([head|tail]) when is_list(head) do
+  def my_flatten([head | tail]) when is_list(head) do
     my_flatten(head) ++ my_flatten(tail)
   end
 
-  def my_flatten([head|tail]) do
+  def my_flatten([head | tail]) do
     [head | my_flatten(tail)]
   end
 end

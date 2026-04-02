@@ -8,11 +8,11 @@ defmodule DungeonTest do
   # :exit  - reach here to win
 
   @simple_map [
-    [:wall,  :wall,  :wall,  :wall,  :wall],
-    [:wall,  :empty, :coin,  :empty, :wall],
-    [:wall,  :empty, :wall,  :empty, :wall],
-    [:wall,  :empty, :empty, :coin,  :wall],
-    [:wall,  :wall,  :wall,  :exit,  :wall]
+    [:wall, :wall, :wall, :wall, :wall],
+    [:wall, :empty, :coin, :empty, :wall],
+    [:wall, :empty, :wall, :empty, :wall],
+    [:wall, :empty, :empty, :coin, :wall],
+    [:wall, :wall, :wall, :exit, :wall]
   ]
 
   test "new game sets player position and score" do
@@ -64,13 +64,19 @@ defmodule DungeonTest do
 
   test "full playthrough" do
     game = Dungeon.new(@simple_map, {1, 1})
+
     game =
       game
-      |> Dungeon.move(:right)       # collect coin at {1,2}
-      |> Dungeon.move(:right)       # {1,3}
-      |> Dungeon.move(:down)        # {2,3}
-      |> Dungeon.move(:down)        # {3,3} collect coin
-      |> Dungeon.move(:down)        # {4,3} exit!
+      # collect coin at {1,2}
+      |> Dungeon.move(:right)
+      # {1,3}
+      |> Dungeon.move(:right)
+      # {2,3}
+      |> Dungeon.move(:down)
+      # {3,3} collect coin
+      |> Dungeon.move(:down)
+      # {4,3} exit!
+      |> Dungeon.move(:down)
 
     assert Dungeon.score(game) == 2
     assert Dungeon.status(game) == :won

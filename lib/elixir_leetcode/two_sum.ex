@@ -16,6 +16,5 @@ defmodule ElixirLeetcode.TwoSum do
         comp_index -> {:halt, [comp_index, index]}
       end
     end)
-    
   end
 end

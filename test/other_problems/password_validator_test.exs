@@ -9,13 +9,13 @@ defmodule OtherProblems.PasswordValidatorTest do
     assert part1(input) == 0
   end
 
- @tag :skip
+  @tag :skip
   test "part1: single line" do
     input = "5\n"
     assert part1(input) == 0
   end
 
- @tag :skip
+  @tag :skip
   test "part1: simple example" do
     input = """
     1
@@ -29,7 +29,7 @@ defmodule OtherProblems.PasswordValidatorTest do
     assert part1(input) == 3
   end
 
-   @tag :skip
+  @tag :skip
   test "part1: all increasing" do
     input = """
     1
@@ -41,7 +41,7 @@ defmodule OtherProblems.PasswordValidatorTest do
     assert part1(input) == 3
   end
 
- @tag :skip
+  @tag :skip
   test "part1: all equal" do
     input = """
     5
@@ -52,7 +52,7 @@ defmodule OtherProblems.PasswordValidatorTest do
     assert part1(input) == 0
   end
 
-@tag :skip
+  @tag :skip
   test "part2: empty input" do
     input = ""
     assert part2(input) == 0
@@ -69,7 +69,6 @@ defmodule OtherProblems.PasswordValidatorTest do
     assert part2(input) == 1
   end
 
-
   test "part2: multiple valid and invalid" do
     input = """
     1-3 a: abcde
@@ -79,7 +78,6 @@ defmodule OtherProblems.PasswordValidatorTest do
     """
 
     assert part2(input) == 1
-
   end
 
   @tag :skip

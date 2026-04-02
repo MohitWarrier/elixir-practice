@@ -37,7 +37,9 @@ defmodule Graph do
 
   defp bfs_helper(graph, queue, visited, came_from, target) do
     case queue do
-      [] -> nil
+      [] ->
+        nil
+
       [current | rest] ->
         if current == target do
           reconstruct_path(came_from, current)
@@ -47,7 +49,9 @@ defmodule Graph do
 
           new_queue = rest ++ new_neighbors
           new_visited = Enum.reduce(new_neighbors, visited, fn n, acc -> MapSet.put(acc, n) end)
-          new_came_from = Enum.reduce(new_neighbors, came_from, fn n, acc -> Map.put(acc, n, current) end)
+
+          new_came_from =
+            Enum.reduce(new_neighbors, came_from, fn n, acc -> Map.put(acc, n, current) end)
 
           bfs_helper(graph, new_queue, new_visited, new_came_from, target)
         end
@@ -60,5 +64,4 @@ defmodule Graph do
       prev -> reconstruct_path(came_from, prev) ++ [current]
     end
   end
-
 end

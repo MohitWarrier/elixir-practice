@@ -1,21 +1,18 @@
 defmodule ListStats do
-  @spec summary([number()]) :: %{min: number() | nil,
-                                 max: number() | nil,
-                                 sum: number(),
-                                 avg: float() | nil,
-                                 count: non_neg_integer()}
+  @spec summary([number()]) :: %{
+          min: number() | nil,
+          max: number() | nil,
+          sum: number(),
+          avg: float() | nil,
+          count: non_neg_integer()
+        }
   def summary([]) do
     %{min: nil, max: nil, sum: 0, avg: nil, count: 0}
   end
 
   def summary(list) do
     Enum.reduce(list, %{min: hd(list), max: hd(list), sum: 0, count: 0}, fn x, acc ->
-      %{acc |
-        min: min(acc.min, x),
-        max: max(acc.max, x),
-        sum: acc.sum + x,
-        count: acc.count + 1
-      }
+      %{acc | min: min(acc.min, x), max: max(acc.max, x), sum: acc.sum + x, count: acc.count + 1}
     end)
     |> then(fn result -> Map.put(result, :mean, result.sum / result.count) end)
     |> then(fn result -> Map.put(result, :median, find_median(list)) end)
@@ -41,5 +38,4 @@ defmodule ListStats do
     |> Enum.max_by(fn {_num, count} -> count end)
     |> elem(0)
   end
-
 end

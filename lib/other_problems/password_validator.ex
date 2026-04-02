@@ -1,8 +1,8 @@
 defmodule OtherProblems.PasswordValidator do
-
   def part1(input) do
     lines = line_cleaner(input)
     IO.inspect(lines, label: "Lines")
+
     nums =
       Enum.map(lines, fn line ->
         String.to_integer(line)
@@ -10,7 +10,6 @@ defmodule OtherProblems.PasswordValidator do
 
     count_increases(nums)
   end
-
 
   defp count_increases(nums) do
     nums
@@ -38,12 +37,14 @@ defmodule OtherProblems.PasswordValidator do
       [policy, password] = String.split(line, ":", trim: true)
       [positions, character] = String.split(policy, " ", trim: true)
       character = String.trim(character)
-      [position1, position2] = positions
-      |> String.split("-", trim: true)
-      |> Enum.map(&String.to_integer/1)
+
+      [position1, position2] =
+        positions
+        |> String.split("-", trim: true)
+        |> Enum.map(&String.to_integer/1)
+
       {position1, position2, character, String.trim(password)}
     end)
-
   end
 
   defp validator(input) do
@@ -51,9 +52,7 @@ defmodule OtherProblems.PasswordValidator do
     |> Enum.count(fn {pos1, pos2, char, password} ->
       char_at_pos1 = String.at(password, pos1 - 1)
       char_at_pos2 = String.at(password, pos2 - 1)
-      (char_at_pos1 == char) != (char_at_pos2 == char)
+      char_at_pos1 == char != (char_at_pos2 == char)
     end)
   end
-
-
 end

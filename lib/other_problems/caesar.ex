@@ -1,5 +1,4 @@
 defmodule Caesar do
-
   def encrypt(text, shift) do
     text
     |> String.to_charlist()
@@ -26,5 +25,4 @@ defmodule Caesar do
   defp shift_char(char, _shift) do
     char
   end
-
 end

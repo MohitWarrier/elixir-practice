@@ -1,5 +1,4 @@
 defmodule RLE do
-
   def encode("") do
     ""
   end
@@ -7,7 +6,8 @@ defmodule RLE do
   def encode(string) do
     string
     |> String.graphemes()
-    |> Enum.chunk_by(&(&1)) # same as fn x -> x end
+    # same as fn x -> x end
+    |> Enum.chunk_by(& &1)
     |> Enum.map(&encoder/1)
     |> to_string()
   end
@@ -30,12 +30,11 @@ defmodule RLE do
       |> String.graphemes()
       |> Enum.map_reduce("", fn char, prev ->
         case Integer.parse(char) do
-          {num, ""} -> {String.duplicate(prev, max(num-1,0)), prev}
-
+          {num, ""} -> {String.duplicate(prev, max(num - 1, 0)), prev}
           :error -> {char, char}
         end
       end)
+
     Enum.join(result)
   end
-
 end

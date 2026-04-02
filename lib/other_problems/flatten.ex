@@ -1,5 +1,4 @@
 defmodule Flatten do
-
   def flatten([]) do
     []
   end
@@ -11,5 +10,4 @@ defmodule Flatten do
   def flatten([head | tail]) do
     [head | flatten(tail)]
   end
-
 end

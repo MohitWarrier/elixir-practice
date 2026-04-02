@@ -3,11 +3,11 @@ defmodule Stack do
     []
   end
 
-  def push(stack, value)do
+  def push(stack, value) do
     [value | stack]
   end
 
-   def pop([]) do
+  def pop([]) do
     :empty
   end
 
@@ -24,11 +24,10 @@ defmodule Stack do
   end
 
   def size(stack) do
-    Enum.reduce(stack, 0, fn  _x, acc -> acc + 1 end)
+    Enum.reduce(stack, 0, fn _x, acc -> acc + 1 end)
   end
 
   def to_list(stack) do
     stack
   end
-
 end

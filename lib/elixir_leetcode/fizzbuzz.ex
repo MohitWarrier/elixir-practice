@@ -1,5 +1,4 @@
 defmodule FizzBuzz do
-
   def run(n) when n < 1 do
     []
   end
@@ -9,20 +8,19 @@ defmodule FizzBuzz do
     Enum.map(1..n, &classify/1)
   end
 
-  defp classify(n) when rem(n,3) == 0 and rem(n,5) == 0 do
+  defp classify(n) when rem(n, 3) == 0 and rem(n, 5) == 0 do
     "FizzBuzz"
   end
 
-  defp classify(n) when rem(n,3) == 0 do
+  defp classify(n) when rem(n, 3) == 0 do
     "Fizz"
   end
 
-  defp classify(n) when rem(n,5) == 0 do
+  defp classify(n) when rem(n, 5) == 0 do
     "Buzz"
   end
 
   defp classify(n) do
     n
   end
-
 end
