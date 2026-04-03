@@ -24,3 +24,5 @@ elixir_leetcode-*.tar
 
 # Ignore configuration secrets
 /config/secrets.exs
+
+problems_roadmap.md
