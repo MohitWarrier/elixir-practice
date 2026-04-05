@@ -26,3 +26,4 @@ elixir_leetcode-*.tar
 /config/secrets.exs
 
 problems_roadmap.md
+CLAUDE.md
