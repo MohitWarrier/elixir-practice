@@ -1,60 +1,13 @@
-# LeetCode Solutions in Elixir
+# Elixir Practice
 
-LeetCode problems solved in Elixir.
+This is my practice repo where I learn and practice Elixir by solving coding problems. Topics include pattern matching, recursion, OTP, GenServer, concurrency, and more.
 
-## Structure
-
-```
-lib/
-  elixir_leetcode/          # LeetCode solutions
-    two_sum.ex
-    valid_parentheses.ex
-    merge_two_sorted_lists.ex
-    ...
-  other_problems/           # Other coding problems
-    list_sum.ex
-    password_validator.ex
-    ...
-
-test/
-  elixir_leetcode/          # Tests for LeetCode solutions
-  other_problems/           # Tests for other problems
-```
-
-## Usage
+## Running tests
 
 ```bash
-# Clone the repo
-git clone <repo-url>
-cd elixir_leetcode
-
-# Install dependencies
-mix deps.get
-
 # Run all tests
 mix test
 
-# Run tests for a specific problem
-mix test test/elixir_leetcode/two_sum_test.exs
-```
-
-## Example
-
-```elixir
-defmodule ElixirLeetcode.TwoSum do
-  def two_sum(nums, target) do
-    # Solution implementation
-  end
-end
-```
-
-```elixir
-defmodule ElixirLeetcode.TwoSumTest do
-  use ExUnit.Case, async: true
-  import ElixirLeetcode.TwoSum
-
-  test "basic case" do
-    assert two_sum([2, 7, 11, 15], 9) == [0, 1]
-  end
-end
+# Run a specific test file
+mix test test/problems/json_parser_test.exs
 ```

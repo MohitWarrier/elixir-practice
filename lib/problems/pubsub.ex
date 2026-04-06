@@ -13,6 +13,10 @@ defmodule PubSub do
     GenServer.call(pid, {:subscribe, topic})
   end
 
+  def unsubscribe(pid, topic) do
+    GenServer.call(pid, {:unsubscribe, topic})
+  end
+
   def handle_call({:subscribe, topic}, {caller, _ref}, state) do
     new_state =
       case Enum.member?(Map.get(state, topic, []), caller) do
@@ -26,10 +30,6 @@ defmodule PubSub do
       end
 
     {:reply, :ok, new_state}
-  end
-
-  def unsubscribe(pid, topic) do
-    GenServer.call(pid, {:unsubscribe, topic})
   end
 
   def handle_call({:unsubscribe, topic}, {caller, _ref}, state) do
@@ -48,6 +48,11 @@ defmodule PubSub do
 
   end
 
+  def handle_call(:topics, _from, state) do
+    {:reply, Map.keys(state), state}
+  end
+
+
   def publish(pid, topic, message) do
     GenServer.cast(pid, {:publish, topic, message})
   end
@@ -65,8 +70,5 @@ defmodule PubSub do
     GenServer.call(pid, :topics)
   end
 
-  def handle_call(:topics, _from, state) do
-    {:reply, Map.keys(state), state}
-  end
 
 end
