@@ -27,3 +27,6 @@ elixir_leetcode-*.tar
 
 problems_roadmap.md
 CLAUDE.md
+.tool-versions
+.devcontainer/
+.elixir_ls/
