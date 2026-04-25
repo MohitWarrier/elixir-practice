@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/mohit/.claude/skills/**)",
+      "Read(//c/Users/mohit/.claude/**)",
+      "Read(//c/Users/mohit/bin/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\mohit\\OneDrive\\Desktop\\Notes\\.claude\\skills"
+    ]
+  }
+}

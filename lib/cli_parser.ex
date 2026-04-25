@@ -1,7 +1,5 @@
 defmodule CliParser do
 
-
-
   def parse(tokens) do
 
    res =
@@ -41,7 +39,7 @@ defmodule CliParser do
     end)
 
     case res do
-      {:error, _} = err -> err
+      {:error, _msg} = err -> err
       map -> {:ok, map}
     end
   end
