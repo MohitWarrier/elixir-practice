@@ -26,7 +26,7 @@ defmodule HuffmanTest do
 
   test "frequent characters get shorter codes" do
     # 'a' appears 5 times, 'b' appears once
-    {_encoded, tree} = Huffman.encode("aaaaab")
+    {_encoded, tree} = Huffman.encode("aaaaabbc")
     codes = Huffman.codes(tree)
     assert bit_size(codes[?a]) < bit_size(codes[?b])
   end

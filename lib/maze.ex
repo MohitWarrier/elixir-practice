@@ -47,7 +47,7 @@ defmodule Maze do
       tile == :wall ->
         :no_path
 
-      tile == :nil -> IO.puts("hello")
+      tile == :nil -> 
         :no_path
 
       visited? ->
