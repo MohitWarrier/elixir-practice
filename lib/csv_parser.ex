@@ -1,15 +1,15 @@
 defmodule CsvParser do
-
   def parse(csv_string) do
     csv = csv_string |> String.trim() |> String.split()
     headers = String.split(hd(csv), ",")
     data = tl(csv)
+
     Enum.map(data, fn row ->
       values = String.split(row, ",")
+
       Enum.zip(headers, values)
       |> Enum.into(%{})
     end)
-
   end
 
   def column(rows, col_name) do
@@ -19,19 +19,19 @@ defmodule CsvParser do
   end
 
   def where(rows, col_name, value) do
-
     Enum.filter(rows, fn row ->
       row[col_name] == value
     end)
-
   end
 
   def sort_by(rows, col_name) do
-
-    Enum.sort_by(rows, fn row ->
-      row[col_name]
-    end, :asc)
-
+    Enum.sort_by(
+      rows,
+      fn row ->
+        row[col_name]
+      end,
+      :asc
+    )
   end
 
   def unique(rows, col_name) do
@@ -46,5 +46,4 @@ defmodule CsvParser do
       end)
     end)
   end
-
 end

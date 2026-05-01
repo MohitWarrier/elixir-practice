@@ -1,10 +1,9 @@
 defmodule BloomFilter do
-    import Bitwise
-    defstruct bits: 0, size: 256
-
+  import Bitwise
+  defstruct bits: 0, size: 256
 
   def new() do
-      %BloomFilter{}
+    %BloomFilter{}
   end
 
   def add(%BloomFilter{} = bf, elem) do
@@ -17,6 +16,4 @@ defmodule BloomFilter do
     pos = :erlang.phash2(elem, bf.size)
     band(bf.bits, 1 <<< pos) != 0
   end
-
-
 end

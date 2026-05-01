@@ -1,5 +1,4 @@
 defmodule Huffman do
-
   # frequencies/1 — count how often each character appears
   # "aabbc" → %{?a => 2, ?b => 2, ?c => 1}
   def frequencies(string) do
@@ -11,8 +10,8 @@ defmodule Huffman do
   def build_tree(freqs) do
     freqs
     |> Map.to_list()
-    |> Enum.map(fn {k,v} -> {v,k} end)
-    |> Enum.sort_by(fn {k,_v} -> k end)
+    |> Enum.map(fn {k, v} -> {v, k} end)
+    |> Enum.sort_by(fn {k, _v} -> k end)
     |> merge_loop()
   end
 
@@ -20,12 +19,11 @@ defmodule Huffman do
     tree
   end
 
-  def merge_loop([a,b | rest]) do
-    [{elem(a,0) + elem(b,0),a,b} | rest]
-    |> Enum.sort_by(fn x -> elem(x,0) end)
+  def merge_loop([a, b | rest]) do
+    [{elem(a, 0) + elem(b, 0), a, b} | rest]
+    |> Enum.sort_by(fn x -> elem(x, 0) end)
     |> merge_loop()
   end
-
 
   # codes/1 — walk the tree and assign a bitstring code to each character
   # left branch = 0, right branch = 1
@@ -39,26 +37,29 @@ defmodule Huffman do
   end
 
   def walk({_freq, left, right}, bits) do
-    Map.merge(walk(left, <<bits::bitstring, 0::1>>),
-    walk(right, <<bits::bitstring, 1::1>>))
+    Map.merge(
+      walk(left, <<bits::bitstring, 0::1>>),
+      walk(right, <<bits::bitstring, 1::1>>)
+    )
   end
 
   # encode/1 — convert a string to a compressed bitstring using Huffman codes
   # returns {encoded_bitstring, tree}
   def encode(string) do
-    tree = frequencies(string)
-    |> build_tree()
+    tree =
+      frequencies(string)
+      |> build_tree()
+
     codes = codes(tree)
 
     bit_string =
-    string
-    |> String.to_charlist()
-    |> Enum.reduce(<<>>, fn char, acc ->
-      <<acc::bitstring, codes[char]::bitstring>>
-    end)
+      string
+      |> String.to_charlist()
+      |> Enum.reduce(<<>>, fn char, acc ->
+        <<acc::bitstring, codes[char]::bitstring>>
+      end)
 
-    {bit_string,tree}
-
+    {bit_string, tree}
   end
 
   # decode/2 — walk the tree using the bits to recover the original string
@@ -74,15 +75,10 @@ defmodule Huffman do
     List.to_string([char]) <> decode_helper(bits, root, root)
   end
 
-  def decode_helper(<<bit::1, rest::bitstring>>,
-      {_freq, left, right}, root) do
-
-        case bit do
-          0 -> decode_helper(rest, left, root)
-          1 -> decode_helper(rest, right, root)
-        end
-
+  def decode_helper(<<bit::1, rest::bitstring>>, {_freq, left, right}, root) do
+    case bit do
+      0 -> decode_helper(rest, left, root)
+      1 -> decode_helper(rest, right, root)
+    end
   end
-
-
 end

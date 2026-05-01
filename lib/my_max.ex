@@ -1,5 +1,4 @@
 defmodule MyMax do
-
   def max([]) do
     nil
   end
@@ -8,10 +7,9 @@ defmodule MyMax do
     x
   end
 
-  def max([head|tail]) do
+  def max([head | tail]) do
     tail_max = max(tail)
 
     if head > tail_max, do: head, else: tail_max
   end
-
 end

@@ -21,8 +21,9 @@ defmodule RegexEngine do
   def checker([p_head, "*" | p_tail], [s_head | s_tail]) do
     cond do
       p_head == s_head or p_head == "." ->
-        checker([p_head, "*" | p_tail], s_tail)
-        or checker(p_tail, [s_head |s_tail])
+        checker([p_head, "*" | p_tail], s_tail) or
+          checker(p_tail, [s_head | s_tail])
+
       true ->
         checker(p_tail, [s_head | s_tail])
     end

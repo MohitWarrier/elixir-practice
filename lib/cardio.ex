@@ -7,6 +7,7 @@ defmodule Cardio do
   def my_length(list) do
     Enum.reduce(list, 0, fn _x, acc -> acc + 1 end)
   end
+
   # Return the last element of a list.
   # last([1, 2, 3])  => 3
   # last([42])       => 42

@@ -44,31 +44,27 @@ defmodule PubSub do
         Map.put(state, topic, new_list)
       end
 
-      {:reply, :ok, new_state}
-
+    {:reply, :ok, new_state}
   end
 
   def handle_call(:topics, _from, state) do
     {:reply, Map.keys(state), state}
   end
 
-
   def publish(pid, topic, message) do
     GenServer.cast(pid, {:publish, topic, message})
   end
 
   def handle_cast({:publish, topic, message}, state) do
+    Map.get(state, topic, [])
+    |> Enum.each(fn x ->
+      send(x, {:pubsub, topic, message})
+    end)
 
-   Map.get(state, topic, [])
-   |> Enum.each(fn x ->
-      send(x, {:pubsub, topic, message}) end)
-
-   {:noreply, state}
+    {:noreply, state}
   end
 
   def topics(pid) do
     GenServer.call(pid, :topics)
   end
-
-
 end

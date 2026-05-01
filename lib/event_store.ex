@@ -30,13 +30,10 @@ defmodule EventStore do
 
   defp replayer(events) do
     Enum.reduce(events, %{balance: 0}, fn event, acc ->
-
       case event do
         {:deposit, amount} -> %{acc | balance: acc.balance + amount}
         {:withdraw, amount} -> %{acc | balance: acc.balance - amount}
       end
-
     end)
   end
-
 end

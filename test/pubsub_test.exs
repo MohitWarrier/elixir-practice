@@ -33,13 +33,16 @@ defmodule PubSubTest do
 
     # spawn a second subscriber
     test_pid = self()
-    child = spawn(fn ->
-      PubSub.subscribe(ps, "sports")
-      send(test_pid, :subscribed)
-      receive do
-        msg -> send(test_pid, {:child_got, msg})
-      end
-    end)
+
+    child =
+      spawn(fn ->
+        PubSub.subscribe(ps, "sports")
+        send(test_pid, :subscribed)
+
+        receive do
+          msg -> send(test_pid, {:child_got, msg})
+        end
+      end)
 
     # wait for child to subscribe
     assert_receive :subscribed

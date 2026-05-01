@@ -1,8 +1,5 @@
 defmodule Counter do
-
-
   def start(initial_value) do
-
     pid = spawn(fn -> loop(initial_value) end)
     pid
   end
@@ -17,23 +14,24 @@ defmodule Counter do
 
   def get(pid) do
     send(pid, {:get, self()})
+
     receive do
-       {:reply, value} ->
+      {:reply, value} ->
         value
     end
-
   end
-
 
   defp loop(value) do
     receive do
+      :increment ->
+        loop(value + 1)
 
-      :increment -> loop(value + 1)
-      :decrement -> loop(value - 1)
+      :decrement ->
+        loop(value - 1)
+
       {:get, caller} ->
         send(caller, {:reply, value})
         loop(value)
     end
   end
-
 end

@@ -174,7 +174,11 @@ defmodule CardioTest do
 
   describe "filter_map" do
     test "keeps only non-nil results of fun" do
-      assert Cardio.filter_map([1, 2, 3, 4], fn x -> if rem(x, 2) == 0, do: x * 10 end) == [20, 40]
+      assert Cardio.filter_map([1, 2, 3, 4], fn x -> if rem(x, 2) == 0, do: x * 10 end) == [
+               20,
+               40
+             ]
+
       assert Cardio.filter_map([], fn x -> x end) == []
       assert Cardio.filter_map([1, 2, 3], fn _ -> nil end) == []
     end
@@ -220,7 +224,10 @@ defmodule CardioTest do
     test "returns all orderings" do
       result = Cardio.permutations([1, 2, 3])
       assert length(result) == 6
-      assert Enum.sort(result) == Enum.sort([[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]])
+
+      assert Enum.sort(result) ==
+               Enum.sort([[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]])
+
       assert Cardio.permutations([]) == [[]]
     end
   end

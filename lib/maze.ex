@@ -28,7 +28,7 @@ defmodule Maze do
     end
   end
 
-  defp check_tile(maze, {row, col}) when row >= 0 and col >=0 do
+  defp check_tile(maze, {row, col}) when row >= 0 and col >= 0 do
     maze |> Enum.at(row) |> Enum.at(col)
   end
 
@@ -47,7 +47,7 @@ defmodule Maze do
       tile == :wall ->
         :no_path
 
-      tile == :nil -> 
+      tile == nil ->
         :no_path
 
       visited? ->

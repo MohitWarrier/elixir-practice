@@ -24,7 +24,8 @@ defmodule MarkdownTest do
   end
 
   test "bold and italic in same line" do
-    assert Markdown.to_html("**bold** and *italic*") == "<p><strong>bold</strong> and <em>italic</em></p>"
+    assert Markdown.to_html("**bold** and *italic*") ==
+             "<p><strong>bold</strong> and <em>italic</em></p>"
   end
 
   # Paragraph
@@ -50,7 +51,8 @@ defmodule MarkdownTest do
 
   test "full document" do
     input = "# Intro\nThis is **bold** text.\n- item one\n- item two"
+
     assert Markdown.to_html(input) ==
-      "<h1>Intro</h1><p>This is <strong>bold</strong> text.</p><ul><li>item one</li><li>item two</li></ul>"
+             "<h1>Intro</h1><p>This is <strong>bold</strong> text.</p><ul><li>item one</li><li>item two</li></ul>"
   end
 end

@@ -11,9 +11,9 @@ defmodule Trie do
     Map.put(trie, :end, true)
   end
 
-  def insert_letters(trie, [head|tail]) do
-      child = Map.get(trie, head, %{})
-      Map.put(trie, head, insert_letters(child, tail))
+  def insert_letters(trie, [head | tail]) do
+    child = Map.get(trie, head, %{})
+    Map.put(trie, head, insert_letters(child, tail))
   end
 
   def search(trie, word) do
@@ -27,9 +27,9 @@ defmodule Trie do
     end
   end
 
-  def search_letters(trie, [head|tail]) do
-     Map.get(trie, head, %{})
-     |> search_letters(tail)
+  def search_letters(trie, [head | tail]) do
+    Map.get(trie, head, %{})
+    |> search_letters(tail)
   end
 
   def starts_with(trie, word) do
@@ -40,12 +40,10 @@ defmodule Trie do
     true
   end
 
-  def path(trie, [head|tail]) do
+  def path(trie, [head | tail]) do
     case Map.get(trie, head) do
-
-      :nil -> false
+      nil -> false
       map -> path(map, tail)
     end
-
   end
 end

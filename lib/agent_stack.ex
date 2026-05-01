@@ -1,5 +1,4 @@
 defmodule AgentStack do
-
   def new() do
     Agent.start_link(fn -> [] end)
   end
@@ -7,7 +6,6 @@ defmodule AgentStack do
   def push(stack, value) do
     Agent.update(stack, fn state -> [value | state] end)
   end
-
 
   def pop(stack) do
     case empty?(stack) do
@@ -27,5 +25,4 @@ defmodule AgentStack do
   def size(stack) do
     Agent.get(stack, fn state -> length(state) end)
   end
-
 end

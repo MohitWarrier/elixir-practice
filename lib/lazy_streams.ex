@@ -1,5 +1,5 @@
 defmodule LazyStreams do
-require Integer
+  require Integer
 
   # first_n_evens/1 — return the first n even numbers
   # hint: Stream.iterate(start, fn x -> ... end)
@@ -12,7 +12,7 @@ require Integer
   # hint: Stream.iterate then Stream.map
   def first_n_squares(n) do
     Stream.iterate(1, fn x -> x + 1 end)
-    |> Stream.map(fn x -> x**2 end)
+    |> Stream.map(fn x -> x ** 2 end)
     |> Enum.take(n)
   end
 
@@ -20,8 +20,8 @@ require Integer
   # [1, 2, 3, 4, 5] → [1, 3, 6, 10, 15]
   # hint: Stream.scan
   def running_sum(list) do
-    Stream.scan(list, 0, fn acc,x -> acc + x end)
-    |>Enum.to_list()
+    Stream.scan(list, 0, fn acc, x -> acc + x end)
+    |> Enum.to_list()
   end
 
   # cycle_labels/2 — repeat the labels list infinitely, take first n
@@ -35,10 +35,9 @@ require Integer
   # fibonacci/1 — return first n fibonacci numbers
   # hint: Stream.unfold({a, b}, fn {a, b} -> {emit, next_state} end)
   def fibonacci(n) do
-    Stream.unfold({0,1}, fn {a,b} ->
-      {a,{b,a+b}}
+    Stream.unfold({0, 1}, fn {a, b} ->
+      {a, {b, a + b}}
     end)
-    |>Enum.take(n)
+    |> Enum.take(n)
   end
-
 end

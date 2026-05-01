@@ -19,7 +19,9 @@ defmodule HttpCheckerTest do
   end
 
   test "check_all returns a list of results" do
-    results = HttpChecker.check_all(["https://www.google.com", "https://this-url-does-not-exist-xyz.com"])
+    results =
+      HttpChecker.check_all(["https://www.google.com", "https://this-url-does-not-exist-xyz.com"])
+
     assert length(results) == 2
     assert Enum.all?(results, fn r -> Map.has_key?(r, :up) end)
   end

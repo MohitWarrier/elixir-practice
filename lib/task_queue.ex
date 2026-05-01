@@ -1,5 +1,4 @@
 defmodule TaskQueue do
-
   def run_all(list) do
     tasks = Enum.map(list, fn x -> Task.async(x) end)
     Enum.map(tasks, fn task -> Task.await(task) end)
@@ -14,7 +13,6 @@ defmodule TaskQueue do
       catch
         :exit, _ -> :timeout
       end
-     end)
+    end)
   end
-
 end

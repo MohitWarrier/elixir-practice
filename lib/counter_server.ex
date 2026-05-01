@@ -50,7 +50,6 @@ defmodule CounterServer do
   def handle_cast(:crash, _state) do
     raise("BOOM")
   end
-
 end
 
 defmodule CounterSupervisor do
@@ -66,7 +65,7 @@ defmodule CounterSupervisor do
     children = [
       {CounterServer, opts}
     ]
-    Supervisor.init(children, strategy: :one_for_one)
 
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

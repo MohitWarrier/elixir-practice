@@ -1,8 +1,6 @@
 defmodule Combat do
-
   def new_player(name, hp, attack_power) do
-    %{name: name, hp: hp, max_hp: hp,
-      attack_power: attack_power}
+    %{name: name, hp: hp, max_hp: hp, attack_power: attack_power}
   end
 
   def name(player) do
@@ -28,6 +26,7 @@ defmodule Combat do
   def attack(attacker, defender) do
     updated_defender =
       take_damage(defender, attack_power(attacker))
+
     {attacker, updated_defender}
   end
 
@@ -36,16 +35,13 @@ defmodule Combat do
   end
 
   def heal(player, amount) do
-    Map.put(player, :hp,
-      min(hp(player) + amount, max_hp(player)))
-
-
+    Map.put(player, :hp, min(hp(player) + amount, max_hp(player)))
   end
 
   def critical_attack(attacker, defender) do
     updated_defender =
       take_damage(defender, attack_power(attacker) * 2)
+
     {attacker, updated_defender}
   end
-
 end

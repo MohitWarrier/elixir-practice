@@ -4,9 +4,9 @@ defmodule RateLimiter do
   end
 
   def check(rate_limiter, timestamp) do
-
     new_list =
       remove_old_events(rate_limiter, timestamp)
+
     rate_limiter =
       Map.put(rate_limiter, :events, new_list)
 
@@ -25,12 +25,11 @@ defmodule RateLimiter do
     events = rl.events
 
     Enum.reduce(events, [], fn event, acc ->
-      if event >= (ts - rl.window_ms) do
+      if event >= ts - rl.window_ms do
         acc ++ [event]
       else
-          acc
+        acc
       end
     end)
-
   end
 end

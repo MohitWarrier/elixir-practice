@@ -1,5 +1,4 @@
 defmodule LoadBalancer do
-
   # new/1 — start an Agent holding the worker list and a current index
   # state: %{workers: [...], index: 0}
   def new(workers) do
@@ -10,12 +9,9 @@ defmodule LoadBalancer do
   # when index reaches the end, it wraps back to 0
   # hint: Agent.get_and_update, rem/2 for wrapping
   def next(lb) do
-
     Agent.get_and_update(lb, fn %{workers: workers, index: index} = state ->
       {Enum.at(workers, index), Map.put(state, :index, rem(index + 1, length(workers)))}
     end)
-
-
   end
 
   # workers/1 — return the current list of workers
@@ -27,7 +23,7 @@ defmodule LoadBalancer do
   def add_worker(lb, worker) do
     Agent.update(lb, fn state ->
       Map.update(state, :workers, [], fn workers -> workers ++ [worker] end)
-     end)
+    end)
   end
 
   # remove_worker/2 — remove a worker from the list, reset index to 0
@@ -39,5 +35,4 @@ defmodule LoadBalancer do
       |> Map.put(:index, 0)
     end)
   end
-
 end

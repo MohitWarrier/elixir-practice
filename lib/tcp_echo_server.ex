@@ -3,12 +3,10 @@ defmodule TcpEchoServer do
   # spawns a process to accept connections, returns {:ok, pid}
   def start(port) do
     {:ok, listen_socket} =
-      :gen_tcp.listen(port, [:binary, packet: :line, active: false,
-          reuseaddr: true])
+      :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true])
 
     pid = spawn(fn -> accept_loop(listen_socket) end)
     {:ok, pid}
-
   end
 
   # accept_loop/1 — waits for a client to connect.
@@ -25,11 +23,13 @@ defmodule TcpEchoServer do
   # sends it back, then loops to read the next line.
   # stops when the client disconnects.
   defp handle_client(socket) do
-
     case :gen_tcp.recv(socket, 0) do
-      {:ok, data} -> :gen_tcp.send(socket, data)
-          handle_client(socket)
-      {:error, :closed} -> :ok
+      {:ok, data} ->
+        :gen_tcp.send(socket, data)
+        handle_client(socket)
+
+      {:error, :closed} ->
+        :ok
     end
   end
 end

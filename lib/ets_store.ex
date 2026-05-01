@@ -1,5 +1,4 @@
 defmodule EtsStore do
-
   # new/0 — creates a new ETS table, returns a reference you use for all other calls
   # hint: :ets.new(:ets_store, [:set, :public])
   def new() do
@@ -33,5 +32,4 @@ defmodule EtsStore do
     :ets.tab2list(table)
     |> Map.new()
   end
-
 end

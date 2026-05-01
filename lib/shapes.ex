@@ -1,4 +1,3 @@
-
 # ===== Step 1: Shape behaviour =====
 # A behaviour defines callbacks — functions that any module using this behaviour MUST implement.
 
@@ -6,7 +5,6 @@ defmodule Shape do
   @callback area(map()) :: number()
   @callback perimeter(map()) :: number()
 end
-
 
 # ===== Step 2: Circle =====
 
@@ -23,7 +21,6 @@ defmodule Circle do
   end
 end
 
-
 # ===== Step 3: Rectangle =====
 
 defmodule Rectangle do
@@ -39,14 +36,12 @@ defmodule Rectangle do
   end
 end
 
-
 # ===== Step 4: Describable protocol =====
 # A protocol defines a function that different data TYPES can implement differently.
 
 defprotocol Describable do
   def describe(value)
 end
-
 
 # ===== Step 5: Implement Describable for each type =====
 
